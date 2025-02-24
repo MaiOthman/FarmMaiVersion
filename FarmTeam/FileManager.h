@@ -1,9 +1,8 @@
 #pragma once
-#include "DataSource.h"
 #include "FileHelper.h"
 #include "global.h"
 
-class FileManager : public DataSource {
+class FileManager {
 private:
     static void addClient(Client& client) {
         FileHelper::saveClient(client);
@@ -13,7 +12,7 @@ private:
         FileHelper::saveEmployee(employee);
     }
 
-    static void addAdmin(Admin& admin) {
+    static void addAdmin(Admin* admin) {
         FileHelper::saveMyAdmin(admin);
     }
 
@@ -27,9 +26,9 @@ private:
         return employeesInfo;
     }
 
-    static vector<Admin>getMyAdmin() {
+    static Admin* getMyAdmin() {
         FileHelper::getMyAdmin();
-        return adminInfo;
+        return AdminGlobal;
     }
 
     static void removeAllClients() {
@@ -63,11 +62,11 @@ public:
             addEmployee(*eItr);
     }
     
-    static void updateAdmin() {
-        removeMyAdmin();
-        for (aItr = adminInfo.begin(); aItr != adminInfo.end(); aItr++)
-            addAdmin(*aItr);
-    }
+//    static void updateAdmin() {
+//        removeMyAdmin();
+//        for (aItr = adminInfo.begin(); aItr != adminInfo.end(); aItr++)
+//            addAdmin(*aItr);
+//    }
 
 };
 

@@ -54,7 +54,7 @@ public:
     // To add new client
     void addClient(Client& client) {
         clientVector.push_back(client);
-        saveClientsToFile();
+        //saveClientsToFile();
     }
 
     // To save client data at file
@@ -101,17 +101,28 @@ public:
     }
 
     // editing client name , id , pass or balance 
-    void editClient(int id, string name, string password, double balance) {
-        Client* client = searchClient(id);
-        if (client) {
-            client->setName(name);
-            client->setPassword(password);
-            client->setBalance(balance);
-            saveClientsToFile();
+    void editClient() {
+        int id;
+        cout << "Please enter the client id" << endl;
+        cin >> id;
+        string name, password;
+        double balance;
+        Client* searchedClient = searchClient(id);
+        if(searchedClient!=nullptr){
+        cout << "Please enter the client name" << endl;
+        cin >> name;
+        cout << "Please enter the client password" << endl;
+        cin >> password;
+        cout << "Please enter the balance" << endl;
+        cin >> balance;
+            // it is wrong because vector index != id;
+            searchedClient->setName(name);
+            searchedClient->setPassword(password);
+            searchedClient->setBalance(balance);
+            //saveClientsToFile();
             cout << "Client information updated successfully." << endl;
-        }
-        else {
-            cout << "Client with ID " << id << " not found in the system." << endl;
+        } else {
+            cout << "The searched id is not found." << endl;
         }
     }
 

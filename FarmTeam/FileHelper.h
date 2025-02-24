@@ -7,7 +7,7 @@
 #include "Admin.h"
 #include "Parser.h"
 #include "global.h"
-
+#include "globalAdmin.hpp"
 using namespace std;
 class FileHelper {
 private:
@@ -62,7 +62,7 @@ public:
         output.close();
     }
 
-    static void saveMyAdmin(Admin a) {
+    static void saveMyAdmin(Admin* a) {
         char delimiter = ',';
         string fileName = "Admin.txt";
         fstream output(fileName, ios::out);
@@ -72,18 +72,18 @@ public:
             return;
         }
 
-        output << a.getId() << delimiter << a.getName() << delimiter << a.getPassword() << delimiter << a.getSalary() << endl;
+        output << a->getId() << delimiter << a->getName() << delimiter << a->getPassword() << delimiter << a->getSalary() << endl;
 
         //To Know How many Lines In Admin File To check Sigleton Princible
-        int lineCount = 0;
-        string line;
-        while (getline(output, line)) {
-            Admin a = Parser::parseToAdmin(line);
-            adminInfo.push_back(a);
-            lineCount++;
-        }
-        (lineCount == 1) ? cout << "Data Correct" : cout << "Data Wrong";
-        output.close();
+//        int lineCount = 0;
+//        string line;
+//        while (getline(output, line)) {
+//            Admin a = Parser::parseToAdmin(line);
+//            adminInfo.push_back(a);
+//            lineCount++;
+//        }
+//        (lineCount == 1) ? cout << "Data Correct" : cout << "Data Wrong";
+//        output.close();
     }
 
     static void getClients() {
@@ -118,26 +118,26 @@ public:
         input.close();
     }
 
-    static void getMyAdmin() {
-        string fileName = "Admin.txt", line;
-        fstream input(fileName, ios::in);
-
-        if (!input.is_open()) {
-            cout << "Error Openening The File !!" << endl;
-            return;
-        }
-
-        int lineCount = 0;
-        while (getline(input, line)) {
-            Admin a = Parser::parseToAdmin(line);
-            adminInfo.push_back(a);
-            lineCount++;
-        }
-        input.close();
-
-        //To Know How many Lines In Admin File To check Sigleton Princible
-        (lineCount == 1) ? cout << "Data Correct" : cout << "Data Wrong";
-    }
+    static void getMyAdmin() ;
+//        string fileName = "Admin.txt", line;
+//        fstream input(fileName, ios::in);
+//
+//        if (!input.is_open()) {
+//            cout << "Error Openening The File !!" << endl;
+//            return;
+//        }
+//
+//        int lineCount = 0;
+//        while (getline(input, line)) {
+//            Admin a = Parser::parseToAdmin(line);
+//            adminInfo.push_back(a);
+//            lineCount++;
+//        }
+//        input.close();
+//
+//        //To Know How many Lines In Admin File To check Sigleton Princible
+//        (lineCount == 1) ? cout << "Data Correct" : cout << "Data Wrong";
+   // }
 
     static void clearFile(string fileName, string lastIdFile) {
         ofstream output;

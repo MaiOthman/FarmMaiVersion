@@ -6,3 +6,4 @@
 //
 
 #include "globalAdmin.hpp"
+Admin* AdminGlobal;

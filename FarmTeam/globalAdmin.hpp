@@ -9,5 +9,8 @@
 #define globalAdmin_hpp
 
 #include <stdio.h>
+#include "Admin.h"
+
+extern Admin* AdminGlobal;
 
 #endif /* globalAdmin_hpp */

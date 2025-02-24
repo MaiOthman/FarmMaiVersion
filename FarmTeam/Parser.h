@@ -3,7 +3,7 @@
 #include <stdexcept>
 //#include <string>
 #include "global.h"
-
+#include "Admin.h"
 class Parser {
 private:
     static vector<string> split(string line, char delimiter) {
